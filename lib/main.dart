@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'core/data/cache_helper.dart';
-import 'my_app.dart';
+import 'app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
