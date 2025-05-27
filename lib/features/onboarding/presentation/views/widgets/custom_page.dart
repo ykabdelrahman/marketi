@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:marketi/features/onboarding/presentation/views/widgets/custom_page_indicator.dart';
+import '../../../../../core/routes/routes.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
@@ -54,10 +56,12 @@ class CustomPage extends StatelessWidget {
             CustomButton(
               text: isLastPage! ? 'Get Started' : 'Next',
               onTap: () {
-                pageController!.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
+                isLastPage!
+                    ? context.go(Routes.login)
+                    : pageController!.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
               },
             ),
             SizedBox(height: 16),

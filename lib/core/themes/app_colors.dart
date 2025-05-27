@@ -18,4 +18,8 @@ class AppColors {
   static const Color darkBlue500 = Color(0xff0041BF);
   static const Color darkBlue700 = Color(0xff002B7F);
   static const Color darkBlue900 = Color(0xff001640);
+
+  static Color rect = Color(0xffB2CCFF).withValues(alpha: .7);
+  static const Color placeholder = Color(0xff929BAB);
+  static const Color navy = Color(0xff51526C);
 }
