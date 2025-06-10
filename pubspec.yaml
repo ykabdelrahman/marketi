@@ -22,6 +22,9 @@ dependencies:
   smooth_page_indicator: ^1.2.1
   flutter_bloc: ^9.1.1
   flutter_svg: ^2.1.0
+  get_it: ^8.0.3
+  pretty_dio_logger: ^1.4.0
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:

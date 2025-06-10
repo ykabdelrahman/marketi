@@ -29,7 +29,7 @@ class CustomPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
-            SizedBox(height: size.height * .1),
+            SizedBox(height: size.height * .07),
             Image.asset(
               image!,
               height: size.height * .4,

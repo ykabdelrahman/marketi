@@ -28,6 +28,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: PageView(
         onPageChanged: (value) {
           isLastPage = value == 2;
