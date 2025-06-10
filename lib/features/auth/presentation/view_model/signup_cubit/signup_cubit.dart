@@ -11,7 +11,7 @@ class SignupCubit extends Cubit<SignupState> {
   final confirmPassword = TextEditingController();
   final username = TextEditingController();
   final phone = TextEditingController();
-  final signupFormKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   bool isPasswordSecure = true;
   bool isConPasswordSecure = true;
   SignupCubit(this._authRepo) : super(SignupInitial());

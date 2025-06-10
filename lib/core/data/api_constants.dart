@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const String apiBaseUrl = "https://student.valuxapps.com/api/";
+  static const String apiBaseUrl = "https://marketi-app.onrender.com/api/v1/";
 
   static const String login = "auth/signIn";
   static const String signup = "auth/signUp";

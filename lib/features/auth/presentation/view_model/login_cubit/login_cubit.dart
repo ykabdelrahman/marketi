@@ -11,6 +11,7 @@ class LoginCubit extends Cubit<LoginState> {
   final AuthRepo _authRepo;
   final email = TextEditingController();
   final password = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   bool isChecked = false;
   LoginCubit(this._authRepo) : super(LoginInitial());
 

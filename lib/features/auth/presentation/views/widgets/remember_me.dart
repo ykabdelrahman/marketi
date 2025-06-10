@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketi/core/themes/styles.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/widgets/custom_check_box.dart';
 import '../../../../../core/widgets/custom_text.dart';
+import '../../view_model/login_cubit/login_cubit.dart';
 
 class RememberMeRow extends StatelessWidget {
   const RememberMeRow({super.key});
@@ -11,7 +13,12 @@ class RememberMeRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomCheckBox(value: false, onChanged: (value) {}),
+        CustomCheckBox(
+          value: context.watch<LoginCubit>().isChecked,
+          onChanged: (value) {
+            context.read<LoginCubit>().rememberCheckBox();
+          },
+        ),
         const SizedBox(width: 6),
         Text(
           'Remember Me',

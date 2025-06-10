@@ -11,7 +11,7 @@ import 'auth_repo.dart';
 class AuthRepoImpl implements AuthRepo {
   final ApiService apiService;
 
-  AuthRepoImpl({required this.apiService});
+  AuthRepoImpl(this.apiService);
 
   @override
   Future<Either<ApiErrorModel, String>> signUp(

@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketi/core/themes/app_colors.dart';
 import 'package:marketi/core/utils/validation.dart';
 import '../../../../../core/themes/styles.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
+import '../../view_model/signup_cubit/signup_cubit.dart';
 
 class SignupFields extends StatelessWidget {
   const SignupFields({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var signupCubit = context.read<SignupCubit>();
     return Form(
+      key: signupCubit.formKey,
       child: Column(
         children: [
           CustomSignUpField(
             text: 'Your Name',
             hint: 'Full Name',
+
             validator: (value) {
               return validatEmptyField(value, fieldName: 'Your Name');
             },
@@ -23,6 +28,7 @@ class SignupFields extends StatelessWidget {
           CustomSignUpField(
             text: 'Username',
             hint: 'Username',
+            controller: signupCubit.username,
             validator: (value) {
               return validatEmptyField(value, fieldName: 'Username');
             },
@@ -32,6 +38,7 @@ class SignupFields extends StatelessWidget {
             text: 'Phone Number',
             hint: '+20 1501142409',
             keyboardType: TextInputType.number,
+            controller: signupCubit.phone,
             validator: validatePhone,
           ),
           const SizedBox(height: 8),
@@ -39,19 +46,24 @@ class SignupFields extends StatelessWidget {
             text: 'Email',
             hint: 'You@gmail.com',
             keyboardType: TextInputType.emailAddress,
+            controller: signupCubit.email,
             validator: validateEmail,
           ),
           const SizedBox(height: 8),
           CustomSignUpField(
             text: 'Password',
             hint: '••••••••••••',
+            hideText: context.watch<SignupCubit>().isPasswordSecure,
             suffixIcon: IconButton(
-              onPressed: () {},
+              onPressed: () => signupCubit.onPasswordEyeTap(),
               icon: Icon(
-                Icons.visibility_off_outlined,
+                context.watch<SignupCubit>().isPasswordSecure
+                    ? Icons.visibility_off_outlined
+                    : Icons.visibility_outlined,
                 color: AppColors.darkBlue900,
               ),
             ),
+            controller: signupCubit.password,
             validator: validatePassword,
           ),
           const SizedBox(height: 8),
@@ -59,15 +71,22 @@ class SignupFields extends StatelessWidget {
             text: 'Confirm Password',
             hint: '••••••••••••',
             isLastInput: true,
+            hideText: context.watch<SignupCubit>().isConPasswordSecure,
             suffixIcon: IconButton(
-              onPressed: () {},
+              onPressed: () => signupCubit.onConfirmPasswordEyeTap(),
               icon: Icon(
-                Icons.visibility_off_outlined,
+                context.watch<SignupCubit>().isConPasswordSecure
+                    ? Icons.visibility_off_outlined
+                    : Icons.visibility_outlined,
                 color: AppColors.darkBlue900,
               ),
             ),
+            controller: signupCubit.confirmPassword,
             validator: (value) {
-              return validateConfirmPassword(value, password: '');
+              return validateConfirmPassword(
+                value,
+                password: signupCubit.password.text,
+              );
             },
           ),
         ],
