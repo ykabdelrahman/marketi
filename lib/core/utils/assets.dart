@@ -7,4 +7,5 @@ class Assets {
   static const String googleIcon = 'assets/icons/googleIcon.svg';
   static const String fbIcon = 'assets/icons/fbIcon.svg';
   static const String appleIcon = 'assets/icons/appleIcon.svg';
+  static const String notification = 'assets/icons/notification.svg';
 }

@@ -20,9 +20,14 @@ class RememberMeRow extends StatelessWidget {
           },
         ),
         const SizedBox(width: 6),
-        Text(
-          'Remember Me',
-          style: Styles.enRegular12().copyWith(color: AppColors.navy),
+        GestureDetector(
+          onTap: () {
+            context.read<LoginCubit>().rememberCheckBox();
+          },
+          child: Text(
+            'Remember Me',
+            style: Styles.enRegular12().copyWith(color: AppColors.navy),
+          ),
         ),
         const Spacer(),
         CustomText(

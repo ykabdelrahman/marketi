@@ -22,4 +22,5 @@ class AppColors {
   static Color rect = Color(0xffB2CCFF).withValues(alpha: .7);
   static const Color placeholder = Color(0xff929BAB);
   static const Color navy = Color(0xff51526C);
+  static const Color grayScale = Color(0xff67687E);
 }
