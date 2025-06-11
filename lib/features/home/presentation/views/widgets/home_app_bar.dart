@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../../core/themes/app_colors.dart';
-import '../../../../../core/themes/styles.dart';
 import '../../../../../core/utils/assets.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -23,10 +22,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Icon(Icons.person),
         ),
       ),
-      title: Text(
-        'Hi User !',
-        style: Styles.enMedium20().copyWith(color: AppColors.darkBlue900),
-      ),
+      title: Text('Hi User !'),
       actions: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),

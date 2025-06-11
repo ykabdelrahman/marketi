@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/styles.dart';
+import '../../../menu/presentation/views/menu_view.dart';
 import 'home_view.dart';
 import 'widgets/home_app_bar.dart';
 
@@ -18,14 +19,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const HomeView(),
     const HomeView(),
     const HomeView(),
-    const HomeView(),
+    const MenuView(),
   ];
 
   final List<PreferredSizeWidget> appBars = [
     const HomeAppBar(),
     const HomeAppBar(),
     const HomeAppBar(),
-    const HomeAppBar(),
+    AppBar(title: Text('Menu'), centerTitle: true),
   ];
 
   @override
