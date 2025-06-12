@@ -50,11 +50,7 @@ class ProfileListItem extends StatelessWidget {
                 const Spacer(),
                 isSwitch
                     ? CustomSwitch(onToggle: onToggle!, value: value!)
-                    : Icon(
-                      Icons.arrow_forward_ios,
-                      color: AppColors.darkBlue900,
-                      size: 22,
-                    ),
+                    : Icon(Icons.arrow_forward_ios, size: 22),
               ],
             ),
             SizedBox(height: 14),

@@ -28,7 +28,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: IconButton(
             onPressed: () {},
-            icon: SvgPicture.asset(Assets.notification),
+            icon: SvgPicture.asset(Assets.notificationIcon),
           ),
         ),
       ],

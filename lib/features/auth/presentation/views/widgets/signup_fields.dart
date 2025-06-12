@@ -19,7 +19,6 @@ class SignupFields extends StatelessWidget {
           CustomSignUpField(
             text: 'Your Name',
             hint: 'Full Name',
-
             validator: (value) {
               return validatEmptyField(value, fieldName: 'Your Name');
             },
@@ -60,7 +59,6 @@ class SignupFields extends StatelessWidget {
                 context.watch<SignupCubit>().isPasswordSecure
                     ? Icons.visibility_off_outlined
                     : Icons.visibility_outlined,
-                color: AppColors.darkBlue900,
               ),
             ),
             controller: signupCubit.password,
@@ -78,7 +76,6 @@ class SignupFields extends StatelessWidget {
                 context.watch<SignupCubit>().isConPasswordSecure
                     ? Icons.visibility_off_outlined
                     : Icons.visibility_outlined,
-                color: AppColors.darkBlue900,
               ),
             ),
             controller: signupCubit.confirmPassword,

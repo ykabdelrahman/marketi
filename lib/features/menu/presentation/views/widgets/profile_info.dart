@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/styles.dart';
 import '../../../../../core/utils/assets.dart';
@@ -27,14 +26,13 @@ class ProfileInfo extends StatelessWidget {
                   height: 26,
                   width: 26,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                    color: Colors.white,
                     shape: BoxShape.circle,
                   ),
-                  child: Center(
-                    child: SvgPicture.asset(
-                      Assets.notification,
-                      fit: BoxFit.none,
-                    ),
+                  child: Icon(
+                    Icons.edit,
+                    size: 20,
+                    color: AppColors.lightBlue100,
                   ),
                 ),
               ),

@@ -14,5 +14,6 @@ class AppThemes {
         color: AppColors.darkBlue900,
       ),
     ),
+    iconTheme: IconThemeData(color: AppColors.darkBlue900),
   );
 }
