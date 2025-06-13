@@ -13,7 +13,10 @@ class ProductsList extends StatelessWidget {
         padding: EdgeInsets.only(right: 14),
         itemCount: 4,
         itemBuilder: (context, index) {
-          return const HomeProductItem();
+          return Padding(
+            padding: const EdgeInsets.only(left: 14),
+            child: const HomeProductItem(),
+          );
         },
       ),
     );
