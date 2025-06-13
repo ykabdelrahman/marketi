@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/styles.dart';
+import '../../../cart/presentation/views/cart_view.dart';
+import '../../../cart/presentation/views/widgets/cart_bottom_sheet.dart';
+import '../../../fav/presentation/views/fav_view.dart';
 import '../../../menu/presentation/views/menu_view.dart';
 import 'home_view.dart';
 import 'widgets/home_app_bar.dart';
@@ -17,21 +20,22 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final List<Widget> screens = [
     const HomeView(),
-    const HomeView(),
-    const HomeView(),
+    const CartView(),
+    const FavView(),
     const MenuView(),
   ];
 
   final List<PreferredSizeWidget> appBars = [
     const HomeAppBar(),
-    const HomeAppBar(),
-    const HomeAppBar(),
+    AppBar(title: Text('Cart'), centerTitle: true),
+    AppBar(title: Text('Favorites'), centerTitle: true),
     AppBar(title: Text('Menu'), centerTitle: true),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: currentIndex == 1 ? CartBottomSheet() : null,
       appBar: appBars[currentIndex],
       body: SafeArea(child: screens[currentIndex]),
       bottomNavigationBar: Container(
