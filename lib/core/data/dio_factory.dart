@@ -9,7 +9,7 @@ class DioFactory {
   static Dio? dio;
 
   static Future<Dio> getDio({String? baseUrl}) async {
-    const Duration timeOut = Duration(seconds: 30);
+    const Duration timeOut = Duration(seconds: 40);
 
     if (dio == null) {
       dio = Dio();
@@ -39,7 +39,6 @@ class DioFactory {
   static void clearToken() {
     dio?.options.headers.remove('Authorization');
   }
-
 
   static void addDioInterceptor() {
     dio?.interceptors.add(

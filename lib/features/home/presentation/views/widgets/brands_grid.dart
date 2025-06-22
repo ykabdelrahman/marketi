@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:marketi/features/home/presentation/views/widgets/brands_item.dart';
 import '../../../../../core/utils/assets.dart';
 
-class BrandsList extends StatelessWidget {
-  const BrandsList({super.key});
+class BrandsGrid extends StatelessWidget {
+  const BrandsGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SliverPadding(
       padding: const EdgeInsets.symmetric(horizontal: 14),
-      child: GridView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
+      sliver: SliverGrid.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           mainAxisSpacing: 8,

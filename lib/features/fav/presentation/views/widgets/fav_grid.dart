@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketi/features/home/data/models/product_model.dart';
 import '../../../../home/presentation/views/widgets/home_product_item.dart';
 
 class FavGrid extends StatelessWidget {
@@ -14,7 +15,7 @@ class FavGrid extends StatelessWidget {
         childAspectRatio: .84,
       ),
       itemCount: 10,
-      itemBuilder: (_, index) => HomeProductItem(),
+      itemBuilder: (_, index) => HomeProductItem(product: dummyProduct()),
     );
   }
 }

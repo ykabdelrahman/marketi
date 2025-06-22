@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketi/core/di/get_it.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/styles.dart';
 import '../../../cart/presentation/views/cart_view.dart';
 import '../../../cart/presentation/views/widgets/cart_bottom_sheet.dart';
 import '../../../fav/presentation/views/fav_view.dart';
 import '../../../menu/presentation/views/menu_view.dart';
+import '../view_model/products/products_cubit.dart';
 import 'home_view.dart';
 import 'widgets/home_app_bar.dart';
 
@@ -19,7 +22,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int currentIndex = 0;
 
   final List<Widget> screens = [
-    const HomeView(),
+    BlocProvider(
+      create: (context) => getIt<ProductsCubit>()..getProducts(),
+      child: const HomeView(),
+    ),
     const CartView(),
     const FavView(),
     const MenuView(),

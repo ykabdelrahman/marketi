@@ -26,6 +26,8 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   dartz: ^0.10.1
   flutter_switch: ^0.3.2
+  skeletonizer: ^2.0.1
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:

@@ -1,10 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/styles.dart';
-import '../../../../../core/utils/assets.dart';
+import '../../../data/models/product_model.dart';
 
 class HomeProductItem extends StatelessWidget {
-  const HomeProductItem({super.key});
+  const HomeProductItem({super.key, required this.product});
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +38,11 @@ class HomeProductItem extends StatelessWidget {
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.all(8),
-                      child: Image.asset(
-                        Assets.onboarding2,
-                        fit: BoxFit.contain,
+                      child: CachedNetworkImage(
+                        imageUrl: product.images.first,
+                        errorWidget: (context, url, error) {
+                          return Icon(Icons.error_outline, size: 40);
+                        },
                       ),
                     ),
                   ),
@@ -64,7 +68,7 @@ class HomeProductItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '799 LE',
+                      '${product.price} LE',
                       style: Styles.enMedium12().copyWith(
                         color: AppColors.darkBlue900,
                       ),
@@ -74,7 +78,7 @@ class HomeProductItem extends StatelessWidget {
                         const Icon(Icons.star_outline, size: 18),
                         const SizedBox(width: 2),
                         Text(
-                          '4.5',
+                          product.rating.toString().substring(0, 3),
                           style: Styles.enMedium12().copyWith(
                             color: AppColors.darkBlue900,
                           ),
@@ -84,7 +88,7 @@ class HomeProductItem extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  'Black JBL Airbods',
+                  product.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Styles.enMedium12().copyWith(
