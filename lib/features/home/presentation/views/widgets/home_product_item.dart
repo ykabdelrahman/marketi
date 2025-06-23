@@ -38,11 +38,14 @@ class HomeProductItem extends StatelessWidget {
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.all(8),
-                      child: CachedNetworkImage(
-                        imageUrl: product.images.first,
-                        errorWidget: (context, url, error) {
-                          return Icon(Icons.error_outline, size: 40);
-                        },
+                      child: SizedBox.expand(
+                        child: CachedNetworkImage(
+                          imageUrl: product.images.first,
+                          fit: BoxFit.contain,
+                          errorWidget: (context, url, error) {
+                            return Icon(Icons.error_outline, size: 36);
+                          },
+                        ),
                       ),
                     ),
                   ),

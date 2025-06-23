@@ -53,7 +53,10 @@ ProductModel dummyProduct() => ProductModel(
   title: '',
   price: 0,
   description: '',
-  images: ['', ''],
+  images: [
+    'https://i.pinimg.com/736x/69/44/6a/69446a0a5a3b3e4dc630875a0d6b1935.jpg',
+    '',
+  ],
   rating: 0.0,
   discount: 0,
   remain: 0,

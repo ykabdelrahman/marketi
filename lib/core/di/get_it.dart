@@ -6,6 +6,7 @@ import '../../features/auth/presentation/view_model/login_cubit/login_cubit.dart
 import '../../features/auth/presentation/view_model/signup_cubit/signup_cubit.dart';
 import '../../features/home/data/repos/home_repo.dart';
 import '../../features/home/data/repos/home_repo_impl.dart';
+import '../../features/home/presentation/view_model/categories/categories_cubit.dart';
 import '../../features/home/presentation/view_model/products/products_cubit.dart';
 import '../data/api_service.dart';
 import '../data/dio_factory.dart';
@@ -25,4 +26,5 @@ Future<void> setupGetIt() async {
   //home
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepoImpl(getIt()));
   getIt.registerFactory<ProductsCubit>(() => ProductsCubit(getIt()));
+  getIt.registerFactory<CategoriesCubit>(() => CategoriesCubit(getIt()));
 }

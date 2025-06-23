@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/assets.dart';
+import '../../../data/models/category_mode.dart';
 import 'category_item.dart';
 
 class CategoriesGrid extends StatelessWidget {
-  const CategoriesGrid({super.key});
+  const CategoriesGrid({super.key, required this.categories});
+  final List<CategoryModel> categories;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +19,7 @@ class CategoriesGrid extends StatelessWidget {
         ),
         itemCount: 6,
         itemBuilder:
-            (context, index) =>
-                const CategoryItem(image: Assets.onboarding1, title: 'Food'),
+            (context, index) => CategoryItem(category: categories[index]),
       ),
     );
   }

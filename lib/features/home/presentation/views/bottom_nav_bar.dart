@@ -7,6 +7,7 @@ import '../../../cart/presentation/views/cart_view.dart';
 import '../../../cart/presentation/views/widgets/cart_bottom_sheet.dart';
 import '../../../fav/presentation/views/fav_view.dart';
 import '../../../menu/presentation/views/menu_view.dart';
+import '../view_model/categories/categories_cubit.dart';
 import '../view_model/products/products_cubit.dart';
 import 'home_view.dart';
 import 'widgets/home_app_bar.dart';
@@ -18,12 +19,20 @@ class BottomNavBar extends StatefulWidget {
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
-class _BottomNavBarState extends State<BottomNavBar> {
+class _BottomNavBarState extends State<BottomNavBar>
+    with AutomaticKeepAliveClientMixin {
   int currentIndex = 0;
 
   final List<Widget> screens = [
-    BlocProvider(
-      create: (context) => getIt<ProductsCubit>()..getProducts(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<ProductsCubit>()..getProducts(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<CategoriesCubit>()..getCategories(),
+        ),
+      ],
       child: const HomeView(),
     ),
     const CartView(),
@@ -40,10 +49,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       bottomSheet: currentIndex == 1 ? CartBottomSheet() : null,
       appBar: appBars[currentIndex],
-      body: SafeArea(child: screens[currentIndex]),
+      body: IndexedStack(index: currentIndex, children: screens),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -103,4 +113,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

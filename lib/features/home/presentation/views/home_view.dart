@@ -3,9 +3,9 @@ import 'package:marketi/core/widgets/custom_text_field.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/utils/assets.dart';
 import 'widgets/brands_grid.dart';
-import 'widgets/categories_grid.dart';
+import 'widgets/categories_bloc_builder.dart';
 import 'widgets/home_section.dart';
-import 'widgets/products_list.dart';
+import 'widgets/products_bloc_builder.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -48,7 +48,7 @@ class HomeView extends StatelessWidget {
           ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 8)),
-        const CategoriesGrid(),
+        const CategoriesBlocBuilder(),
         const SliverToBoxAdapter(child: SizedBox(height: 14)),
         const SliverToBoxAdapter(
           child: HomeSection(
