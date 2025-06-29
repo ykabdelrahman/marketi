@@ -1,19 +1,19 @@
 part of 'categories_cubit.dart';
 
 @immutable
-sealed class CategoriesState {}
+sealed class BrandsState {}
 
-final class CategoriesInitial extends CategoriesState {}
+final class CategoriesInitial extends BrandsState {}
 
-final class CategoriesLoading extends CategoriesState {}
+final class CategoriesLoading extends BrandsState {}
 
-final class CategoriesLoaded extends CategoriesState {
+final class CategoriesLoaded extends BrandsState {
   final List<CategoryModel> categories;
 
   CategoriesLoaded(this.categories);
 }
 
-final class CategoriesError extends CategoriesState {
+final class CategoriesError extends BrandsState {
   final String message;
 
   CategoriesError(this.message);

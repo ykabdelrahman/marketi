@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marketi/core/widgets/custom_text_field.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/utils/assets.dart';
-import 'widgets/brands_grid.dart';
+import 'widgets/brands_bloc_builder.dart';
 import 'widgets/categories_bloc_builder.dart';
 import 'widgets/home_section.dart';
 import 'widgets/products_bloc_builder.dart';
@@ -63,7 +63,7 @@ class HomeView extends StatelessWidget {
           child: HomeSection(sectionText: 'Brands', clickableText: 'View all'),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 8)),
-        const BrandsGrid(),
+        const BrandsBlocBuilder(),
         const SliverToBoxAdapter(child: SizedBox(height: 14)),
       ],
     );

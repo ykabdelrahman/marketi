@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:marketi/features/home/presentation/views/widgets/brands_item.dart';
-import '../../../../../core/utils/assets.dart';
+import '../../../data/models/brand_model.dart';
 
 class BrandsGrid extends StatelessWidget {
-  const BrandsGrid({super.key});
+  const BrandsGrid({super.key, required this.brands});
+  final List<BrandModel> brands;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +18,7 @@ class BrandsGrid extends StatelessWidget {
           childAspectRatio: 1.1,
         ),
         itemCount: 3,
-        itemBuilder:
-            (context, index) => const BrandsItem(image: Assets.onboarding3),
+        itemBuilder: (context, index) => BrandsItem(brand: brands[index]),
       ),
     );
   }

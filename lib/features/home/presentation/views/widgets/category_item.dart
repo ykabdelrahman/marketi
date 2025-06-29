@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/styles.dart';
-import '../../../data/models/category_mode.dart';
+import '../../../data/models/category_model.dart';
 
 class CategoryItem extends StatelessWidget {
   final CategoryModel category;
@@ -27,7 +25,6 @@ class CategoryItem extends StatelessWidget {
                 imageUrl: category.imagePath,
                 fit: BoxFit.contain,
                 errorWidget: (context, url, error) {
-                  log('Error loading category image: $error');
                   return Icon(Icons.error_outline, size: 36);
                 },
               ),

@@ -7,6 +7,7 @@ import '../../../cart/presentation/views/cart_view.dart';
 import '../../../cart/presentation/views/widgets/cart_bottom_sheet.dart';
 import '../../../fav/presentation/views/fav_view.dart';
 import '../../../menu/presentation/views/menu_view.dart';
+import '../view_model/brands/brands_cubit.dart';
 import '../view_model/categories/categories_cubit.dart';
 import '../view_model/products/products_cubit.dart';
 import 'home_view.dart';
@@ -32,6 +33,7 @@ class _BottomNavBarState extends State<BottomNavBar>
         BlocProvider(
           create: (context) => getIt<CategoriesCubit>()..getCategories(),
         ),
+        BlocProvider(create: (context) => getIt<BrandsCubit>()..getBrands()),
       ],
       child: const HomeView(),
     ),
