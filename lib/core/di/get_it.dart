@@ -4,6 +4,9 @@ import 'package:marketi/features/auth/data/repos/auth_repo_impl.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import '../../features/auth/presentation/view_model/signup_cubit/signup_cubit.dart';
+import '../../features/cart/data/repos/cart_repo.dart';
+import '../../features/cart/data/repos/cart_repo_impl.dart';
+import '../../features/cart/presentation/view_model/cart/cart_cubit.dart';
 import '../../features/home/data/repos/home_repo.dart';
 import '../../features/home/data/repos/home_repo_impl.dart';
 import '../../features/home/presentation/view_model/brands/brands_cubit.dart';
@@ -29,4 +32,8 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<ProductsCubit>(() => ProductsCubit(getIt()));
   getIt.registerFactory<CategoriesCubit>(() => CategoriesCubit(getIt()));
   getIt.registerFactory<BrandsCubit>(() => BrandsCubit(getIt()));
+
+  // cart
+  getIt.registerLazySingleton<CartRepo>(() => CartRepoImpl(getIt()));
+  getIt.registerFactory<CartCubit>(() => CartCubit(getIt()));
 }

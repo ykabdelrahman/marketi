@@ -26,7 +26,7 @@ class LoginBlocListener extends StatelessWidget {
           showSnackBar(context, state.error);
         } else if (state is LoginSuccess) {
           context.pop();
-          context.go(Routes.home);
+          context.go(Routes.bottomNavBar);
         }
       },
       child: const SizedBox.shrink(),
