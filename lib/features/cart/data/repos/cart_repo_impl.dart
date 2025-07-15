@@ -3,7 +3,7 @@ import 'package:marketi/core/errors/api_error_model.dart';
 import '../../../../core/data/api_constants.dart';
 import '../../../../core/data/api_service.dart';
 import '../../../../core/errors/api_error_handler.dart';
-import '../../../home/data/models/product_model.dart';
+import '../models/cart_model.dart';
 import 'cart_repo.dart';
 
 class CartRepoImpl implements CartRepo {
@@ -25,12 +25,12 @@ class CartRepoImpl implements CartRepo {
   }
 
   @override
-  Future<Either<ApiErrorModel, List<ProductModel>>> getCart() async {
+  Future<Either<ApiErrorModel, List<CartModel>>> getCart() async {
     try {
       var data = await _apiService.get(endPoint: ApiConstants.getCart);
-      List<ProductModel> products =
+      List<CartModel> products =
           (data['list'] as List)
-              .map((item) => ProductModel.fromJson(item))
+              .map((item) => CartModel.fromJson(item))
               .toList();
       return Right(products);
     } catch (error) {

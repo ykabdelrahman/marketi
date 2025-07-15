@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketi/core/di/get_it.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/styles.dart';
+import '../../../cart/presentation/view_model/cart/cart_cubit.dart';
 import '../../../cart/presentation/views/cart_view.dart';
 import '../../../cart/presentation/views/widgets/cart_bottom_sheet.dart';
 import '../../../fav/presentation/views/fav_view.dart';
@@ -20,8 +21,7 @@ class BottomNavBar extends StatefulWidget {
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
-class _BottomNavBarState extends State<BottomNavBar>
-    with AutomaticKeepAliveClientMixin {
+class _BottomNavBarState extends State<BottomNavBar> {
   int currentIndex = 0;
 
   final List<Widget> screens = [
@@ -37,7 +37,10 @@ class _BottomNavBarState extends State<BottomNavBar>
       ],
       child: const HomeView(),
     ),
-    const CartView(),
+    BlocProvider(
+      create: (context) => getIt<CartCubit>()..getCart(),
+      child: const CartView(),
+    ),
     const FavView(),
     const MenuView(),
   ];
@@ -51,7 +54,6 @@ class _BottomNavBarState extends State<BottomNavBar>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Scaffold(
       bottomSheet: currentIndex == 1 ? CartBottomSheet() : null,
       appBar: appBars[currentIndex],
@@ -115,7 +117,4 @@ class _BottomNavBarState extends State<BottomNavBar>
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

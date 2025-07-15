@@ -1,11 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/styles.dart';
-import '../../../../../core/utils/assets.dart';
+import '../../../data/models/cart_model.dart';
 
 class ProductCartItem extends StatelessWidget {
-  const ProductCartItem({super.key});
+  const ProductCartItem({super.key, required this.product});
+  final CartModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +27,14 @@ class ProductCartItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(
-            Assets.onboarding1,
+          CachedNetworkImage(
+            imageUrl: product.images.first,
             width: 100,
             height: 100,
             fit: BoxFit.cover,
+            errorWidget: (context, url, error) {
+              return Icon(Icons.error_outline, size: 36);
+            },
           ),
           SizedBox(width: 8),
           Expanded(
@@ -42,7 +46,7 @@ class ProductCartItem extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        'Pampers Swaddlers',
+                        product.title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Styles.enMedium14().copyWith(
@@ -57,7 +61,9 @@ class ProductCartItem extends StatelessWidget {
                 const SizedBox(height: 4),
 
                 Text(
-                  '84 Diapers',
+                  product.description,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: Styles.enMedium14().copyWith(
                     color: AppColors.grayScale,
                   ),
@@ -68,7 +74,7 @@ class ProductCartItem extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        'Price: 345,00 EGP',
+                        'Price: ${product.price} EGP',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Styles.enMedium14().copyWith(
@@ -82,7 +88,7 @@ class ProductCartItem extends StatelessWidget {
                         Icon(Icons.star_outline, size: 18),
                         SizedBox(width: 4),
                         Text(
-                          '4.9',
+                          product.rating.toString().substring(0, 3),
                           style: Styles.enMedium12().copyWith(
                             color: AppColors.darkBlue900,
                           ),

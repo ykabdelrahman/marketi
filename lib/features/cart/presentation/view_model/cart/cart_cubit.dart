@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../home/data/models/product_model.dart';
+import '../../../data/models/cart_model.dart';
 import '../../../data/repos/cart_repo.dart';
 part 'cart_state.dart';
 
