@@ -6,6 +6,7 @@ import '../../../../core/themes/styles.dart';
 import '../../../cart/presentation/view_model/cart/cart_cubit.dart';
 import '../../../cart/presentation/views/cart_view.dart';
 import '../../../cart/presentation/views/widgets/cart_bottom_sheet.dart';
+import '../../../fav/presentation/view_model/fav/fav_cubit.dart';
 import '../../../fav/presentation/views/fav_view.dart';
 import '../../../menu/presentation/views/menu_view.dart';
 import '../view_model/brands/brands_cubit.dart';
@@ -41,7 +42,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
       create: (context) => getIt<CartCubit>()..getCart(),
       child: const CartView(),
     ),
-    const FavView(),
+    BlocProvider(
+      create: (context) => getIt<FavCubit>()..getFav(),
+      child: const FavView(),
+    ),
     const MenuView(),
   ];
 

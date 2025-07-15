@@ -7,6 +7,9 @@ import '../../features/auth/presentation/view_model/signup_cubit/signup_cubit.da
 import '../../features/cart/data/repos/cart_repo.dart';
 import '../../features/cart/data/repos/cart_repo_impl.dart';
 import '../../features/cart/presentation/view_model/cart/cart_cubit.dart';
+import '../../features/fav/data/repos/fav_repo.dart';
+import '../../features/fav/data/repos/fav_repo_impl.dart';
+import '../../features/fav/presentation/view_model/fav/fav_cubit.dart';
 import '../../features/home/data/repos/home_repo.dart';
 import '../../features/home/data/repos/home_repo_impl.dart';
 import '../../features/home/presentation/view_model/brands/brands_cubit.dart';
@@ -36,4 +39,8 @@ Future<void> setupGetIt() async {
   // cart
   getIt.registerLazySingleton<CartRepo>(() => CartRepoImpl(getIt()));
   getIt.registerFactory<CartCubit>(() => CartCubit(getIt()));
+
+  // fav
+  getIt.registerLazySingleton<FavRepo>(() => FavRepoImpl(getIt()));
+  getIt.registerFactory<FavCubit>(() => FavCubit(getIt()));
 }
