@@ -3,7 +3,8 @@ import 'package:marketi/features/home/data/models/product_model.dart';
 import '../../../../home/presentation/views/widgets/home_product_item.dart';
 
 class FavGrid extends StatelessWidget {
-  const FavGrid({super.key});
+  const FavGrid({super.key, required this.products});
+  final List<ProductModel> products;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +15,8 @@ class FavGrid extends StatelessWidget {
         crossAxisSpacing: 14,
         childAspectRatio: .84,
       ),
-      itemCount: 10,
-      itemBuilder: (_, index) => HomeProductItem(product: dummyProduct()),
+      itemCount: products.length,
+      itemBuilder: (_, index) => HomeProductItem(product: products[index]),
     );
   }
 }
