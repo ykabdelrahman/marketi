@@ -57,7 +57,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
       bottomSheet: currentIndex == 1 ? CartBottomSheet() : null,
       appBar: appBars[currentIndex],
-      body: IndexedStack(index: currentIndex, children: screens),
+      body: screens[currentIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(

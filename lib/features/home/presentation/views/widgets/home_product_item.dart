@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:marketi/core/di/get_it.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/styles.dart';
+import '../../../../cart/presentation/view_model/cart/cart_cubit.dart';
 import '../../../data/models/product_model.dart';
 
 class HomeProductItem extends StatelessWidget {
@@ -103,7 +105,9 @@ class HomeProductItem extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      getIt<CartCubit>().addCart(product.id);
+                    },
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(color: AppColors.lightBlue100),
                       padding: const EdgeInsets.symmetric(
