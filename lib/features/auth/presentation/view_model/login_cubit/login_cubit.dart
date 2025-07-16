@@ -35,7 +35,7 @@ class LoginCubit extends Cubit<LoginState> {
     DioFactory.setTokenIntoHeaderAfterLogin(token);
   }
 
-  rememberCheckBox() {
+  void rememberCheckBox() {
     isChecked = !isChecked;
     emit(CheckBox());
   }

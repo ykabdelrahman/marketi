@@ -4,12 +4,16 @@ import 'package:marketi/features/home/data/models/product_model.dart';
 import '../../../../core/data/api_constants.dart';
 import '../../../../core/data/api_service.dart';
 import '../../../../core/errors/api_error_handler.dart';
+import '../data_resources/fav_local_data.dart';
+import '../data_resources/fav_remote_data.dart';
 import 'fav_repo.dart';
 
 class FavRepoImpl implements FavRepo {
   final ApiService _apiService;
+  final FavRemoteData _favRemoteData;
+  final FavLocalData _favLocalData;
 
-  FavRepoImpl(this._apiService);
+  FavRepoImpl(this._apiService, this._favRemoteData, this._favLocalData);
   @override
   Future<Either<ApiErrorModel, String>> addFav({
     required String productId,
@@ -28,12 +32,13 @@ class FavRepoImpl implements FavRepo {
   @override
   Future<Either<ApiErrorModel, List<ProductModel>>> getFav() async {
     try {
-      var data = await _apiService.get(endPoint: ApiConstants.getFav);
-      List<ProductModel> products =
-          (data['list'] as List)
-              .map((item) => ProductModel.fromJson(item))
-              .toList();
-      return Right(products);
+      var favItems = _favLocalData.getFav();
+      if (favItems.isNotEmpty) {
+        return Right(favItems);
+      } else {
+        var remoteFavItems = await _favRemoteData.getFav();
+        return Right(remoteFavItems);
+      }
     } catch (error) {
       return Left(ApiErrorHandler.handle(error));
     }

@@ -3,24 +3,26 @@ import 'package:marketi/core/errors/api_error_model.dart';
 import 'package:marketi/features/home/data/models/brand_model.dart';
 import 'package:marketi/features/home/data/models/category_model.dart';
 import 'package:marketi/features/home/data/models/product_model.dart';
-import '../../../../core/data/api_constants.dart';
-import '../../../../core/data/api_service.dart';
 import '../../../../core/errors/api_error_handler.dart';
+import '../data_resources/home_local_data.dart';
+import '../data_resources/home_remote_data.dart';
 import 'home_repo.dart';
 
 class HomeRepoImpl implements HomeRepo {
-  final ApiService _apiService;
+  final HomeLocalData homeLocalData;
+  final HomeRemoteData homeRemoteData;
 
-  HomeRepoImpl(this._apiService);
+  HomeRepoImpl(this.homeLocalData, this.homeRemoteData);
   @override
   Future<Either<ApiErrorModel, List<ProductModel>>> getProducts() async {
     try {
-      var data = await _apiService.get(endPoint: ApiConstants.products);
-      List<ProductModel> products =
-          (data['list'] as List)
-              .map((item) => ProductModel.fromJson(item))
-              .toList();
-      return Right(products);
+      var products = homeLocalData.getProducts();
+      if (products.isNotEmpty) {
+        return Right(products);
+      } else {
+        var remoteProducts = await homeRemoteData.getProducts();
+        return Right(remoteProducts);
+      }
     } catch (error) {
       return Left(ApiErrorHandler.handle(error));
     }
@@ -29,12 +31,13 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<ApiErrorModel, List<CategoryModel>>> getCategories() async {
     try {
-      var data = await _apiService.get(endPoint: ApiConstants.categories);
-      List<CategoryModel> categories =
-          (data['list'] as List)
-              .map((item) => CategoryModel.fromJson(item))
-              .toList();
-      return Right(categories);
+      var categories = homeLocalData.getCategories();
+      if (categories.isNotEmpty) {
+        return Right(categories);
+      } else {
+        var remoteCategories = await homeRemoteData.getCategories();
+        return Right(remoteCategories);
+      }
     } catch (error) {
       return Left(ApiErrorHandler.handle(error));
     }
@@ -43,12 +46,13 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<ApiErrorModel, List<BrandModel>>> getBrands() async {
     try {
-      var data = await _apiService.get(endPoint: ApiConstants.brands);
-      List<BrandModel> brands =
-          (data['list'] as List)
-              .map((item) => BrandModel.fromJson(item))
-              .toList();
-      return Right(brands);
+      var brands = homeLocalData.getBrands();
+      if (brands.isNotEmpty) {
+        return Right(brands);
+      } else {
+        var remoteBrands = await homeRemoteData.getBrands();
+        return Right(remoteBrands);
+      }
     } catch (error) {
       return Left(ApiErrorHandler.handle(error));
     }

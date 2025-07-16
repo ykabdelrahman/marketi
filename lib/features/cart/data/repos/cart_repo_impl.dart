@@ -3,12 +3,16 @@ import 'package:marketi/core/errors/api_error_model.dart';
 import '../../../../core/data/api_constants.dart';
 import '../../../../core/data/api_service.dart';
 import '../../../../core/errors/api_error_handler.dart';
+import '../data_resources/cart_local_data.dart';
+import '../data_resources/cart_remote_data.dart';
 import '../models/cart_model.dart';
 import 'cart_repo.dart';
 
 class CartRepoImpl implements CartRepo {
   final ApiService _apiService;
-  CartRepoImpl(this._apiService);
+  final CartRemoteData _cartRemoteData;
+  final CartLocalData _cartLocalData;
+  CartRepoImpl(this._apiService, this._cartRemoteData, this._cartLocalData);
   @override
   Future<Either<ApiErrorModel, String>> addCart({
     required String productId,
@@ -27,12 +31,13 @@ class CartRepoImpl implements CartRepo {
   @override
   Future<Either<ApiErrorModel, List<CartModel>>> getCart() async {
     try {
-      var data = await _apiService.get(endPoint: ApiConstants.getCart);
-      List<CartModel> products =
-          (data['list'] as List)
-              .map((item) => CartModel.fromJson(item))
-              .toList();
-      return Right(products);
+      var cartItems = _cartLocalData.getCart();
+      if (cartItems.isNotEmpty) {
+        return Right(cartItems);
+      } else {
+        var remoteCartItems = await _cartRemoteData.getCart();
+        return Right(remoteCartItems);
+      }
     } catch (error) {
       return Left(ApiErrorHandler.handle(error));
     }

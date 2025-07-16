@@ -1,17 +1,31 @@
-class CartModel {
+import 'package:hive/hive.dart';
+
+part 'cart_model.g.dart';
+
+@HiveType(typeId: 3)
+class CartModel extends HiveObject {
+  @HiveField(0)
   final String id;
+  @HiveField(1)
   final String title;
+  @HiveField(2)
   final int price;
+  @HiveField(3)
   final String description;
+  @HiveField(4)
   final List<String> images;
+  @HiveField(5)
   final double rating;
+  @HiveField(6)
   final int? discount;
+  @HiveField(7)
   final int? remain;
+  @HiveField(8)
   final int? sold;
+  @HiveField(9)
   final String category;
+  @HiveField(10)
   final String brand;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
 
   CartModel({
     required this.id,
@@ -25,8 +39,6 @@ class CartModel {
     required this.sold,
     required this.category,
     required this.brand,
-    required this.createdAt,
-    required this.updatedAt,
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) {
@@ -42,8 +54,6 @@ class CartModel {
       sold: json['sold'],
       category: json['category'],
       brand: json['brand'],
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
     );
   }
 }
@@ -63,6 +73,4 @@ CartModel dummyCart() => CartModel(
   sold: 0,
   category: 'Dummy Category',
   brand: 'Dummy Brand',
-  createdAt: DateTime.now(),
-  updatedAt: DateTime.now(),
 );

@@ -37,7 +37,7 @@ class ProductsBlocBuilder extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.only(left: 14, right: 14),
               itemCount: 4,
-              separatorBuilder: (_, __) => const SizedBox(width: 14),
+              separatorBuilder: (_, _) => const SizedBox(width: 14),
               itemBuilder: (context, index) {
                 return Skeletonizer(
                   enabled: true,

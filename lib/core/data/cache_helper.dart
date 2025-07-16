@@ -5,7 +5,7 @@ class CacheHelper {
   static late SharedPreferences _prefs;
   static const _storage = FlutterSecureStorage();
 
-  static init() async {
+  static Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
   }
 

@@ -31,12 +31,12 @@ class SignupCubit extends Cubit<SignupState> {
     });
   }
 
-  onPasswordEyeTap() {
+  void onPasswordEyeTap() {
     isPasswordSecure = !isPasswordSecure;
     emit(PasswordEyeTap());
   }
 
-  onConfirmPasswordEyeTap() {
+  void onConfirmPasswordEyeTap() {
     isConPasswordSecure = !isConPasswordSecure;
     emit(ConfirmPasswordEyeTap());
   }
