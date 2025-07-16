@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../../../../../core/di/get_it.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/styles.dart';
+import '../../../../fav/presentation/view_model/fav/fav_cubit.dart';
 import '../../../data/models/cart_model.dart';
 
 class ProductCartItem extends StatelessWidget {
@@ -55,7 +57,12 @@ class ProductCartItem extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 4),
-                    const Icon(Icons.favorite_border, size: 20),
+                    InkWell(
+                      onTap: () {
+                        getIt<FavCubit>().addFav(product.id);
+                      },
+                      child: const Icon(Icons.favorite_border, size: 20),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 4),

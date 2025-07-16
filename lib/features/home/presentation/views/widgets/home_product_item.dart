@@ -4,6 +4,7 @@ import 'package:marketi/core/di/get_it.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/styles.dart';
 import '../../../../cart/presentation/view_model/cart/cart_cubit.dart';
+import '../../../../fav/presentation/view_model/fav/fav_cubit.dart';
 import '../../../data/models/product_model.dart';
 
 class HomeProductItem extends StatelessWidget {
@@ -51,13 +52,18 @@ class HomeProductItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     top: 4,
                     right: 4,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 12,
-                      child: Icon(Icons.favorite_outline, size: 16),
+                    child: InkWell(
+                      onTap: () {
+                        getIt<FavCubit>().addFav(product.id);
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 12,
+                        child: Icon(Icons.favorite_outline, size: 16),
+                      ),
                     ),
                   ),
                 ],
