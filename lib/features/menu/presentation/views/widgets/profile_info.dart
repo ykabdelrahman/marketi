@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/styles.dart';
 import '../../../../../core/utils/assets.dart';
+import '../../../../../core/utils/constants.dart';
+import '../../../../auth/data/models/user_model.dart';
 
 class ProfileInfo extends StatelessWidget {
   const ProfileInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final user = Hive.box<UserModel>(Constants.userBox).get('user');
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -41,11 +45,11 @@ class ProfileInfo extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Text(
-          'User Name',
+          user!.name,
           style: Styles.enSemiBold18().copyWith(color: AppColors.darkBlue900),
         ),
         Text(
-          'user@gmail.com',
+          user.email,
           style: Styles.enMedium14().copyWith(color: AppColors.grayScale),
         ),
       ],

@@ -8,4 +8,6 @@ abstract class AuthRepo {
   Future<Either<ApiErrorModel, String>> signUp(SignupRequest signupRequest);
 
   Future<Either<ApiErrorModel, LoginResponse>> login(LoginRequest loginRequest);
+
+  Future<Either<ApiErrorModel, void>> getUser();
 }

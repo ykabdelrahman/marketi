@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../../core/data/cache_helper.dart';
 import '../../../../../core/routes/routes.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/styles.dart';
+import '../../../../../core/utils/clear_cache.dart';
 import '../../../../../core/widgets/custom_button.dart';
 
 void showLogoutBottomSheet(BuildContext context) {
@@ -33,8 +33,8 @@ void showLogoutBottomSheet(BuildContext context) {
             CustomButton(
               text: 'Log Out',
               onTap: () async {
-                CacheHelper.deleteAllSecureData();
-                context.go(Routes.login);
+                await clearCache();
+                if (context.mounted) context.go(Routes.login);
               },
             ),
           ],

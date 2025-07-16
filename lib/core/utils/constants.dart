@@ -11,4 +11,5 @@ class Constants {
   static const String brandsBox = 'brandsBox';
   static const String cartBox = 'cartBox';
   static const String favBox = 'favBox';
+  static const String userBox = 'userBox';
 }

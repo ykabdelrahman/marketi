@@ -8,7 +8,6 @@ abstract class HomeLocalData {
   List<ProductModel> getProducts();
   List<CategoryModel> getCategories();
   List<BrandModel> getBrands();
-  Future<void> clearCache();
 }
 
 class HomeLocalDataImpl implements HomeLocalData {
@@ -28,17 +27,5 @@ class HomeLocalDataImpl implements HomeLocalData {
   List<ProductModel> getProducts() {
     final box = Hive.box<ProductModel>(Constants.productsBox);
     return box.values.toList();
-  }
-
-  @override
-  Future<void> clearCache() async {
-    final boxes = [
-      Hive.box<BrandModel>(Constants.brandsBox),
-      Hive.box<CategoryModel>(Constants.categoriesBox),
-      Hive.box<ProductModel>(Constants.productsBox),
-    ];
-    for (var box in boxes) {
-      await box.clear();
-    }
   }
 }

@@ -12,4 +12,5 @@ class ApiConstants {
   static const String addFav = "user/addFavorite";
   static const String removeFav = "user/deleteFavorite";
   static const String getFav = "user/getFavorite";
+  static const String getUser = "portfoilo/userData";
 }

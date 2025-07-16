@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/data/cache_helper.dart';
-import '../../../../../core/data/dio_factory.dart';
-import '../../../../../core/utils/constants.dart';
 import '../../../data/models/login_request.dart';
 import '../../../data/repos/auth_repo.dart';
 part 'login_state.dart';
@@ -22,17 +19,10 @@ class LoginCubit extends Cubit<LoginState> {
       password: password.text.trim(),
     );
     final results = await _authRepo.login(loginModel);
-    results.fold((failure) => emit(LoginFailure(failure.message!)), (
-      data,
-    ) async {
-      await saveUserToken(data.token);
-      emit(LoginSuccess(data.message));
-    });
-  }
-
-  Future<void> saveUserToken(String token) async {
-    await CacheHelper.setSecureData(key: Constants.tokenKey, value: token);
-    DioFactory.setTokenIntoHeaderAfterLogin(token);
+    results.fold(
+      (failure) => emit(LoginFailure(failure.message!)),
+      (data) => emit(LoginSuccess(data.message)),
+    );
   }
 
   void rememberCheckBox() {
