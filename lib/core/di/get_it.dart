@@ -51,16 +51,12 @@ Future<void> setupGetIt() async {
     () => CartRemoteDataImpl(getIt()),
   );
   getIt.registerLazySingleton<CartLocalData>(() => CartLocalDataImpl());
-  getIt.registerLazySingleton<CartRepo>(
-    () => CartRepoImpl(getIt(), getIt(), getIt()),
-  );
+  getIt.registerLazySingleton<CartRepo>(() => CartRepoImpl(getIt(), getIt()));
   getIt.registerFactory<CartCubit>(() => CartCubit(getIt()));
 
   // fav
   getIt.registerLazySingleton<FavRemoteData>(() => FavRemoteDataImpl(getIt()));
   getIt.registerLazySingleton<FavLocalData>(() => FavLocalDataImpl());
-  getIt.registerLazySingleton<FavRepo>(
-    () => FavRepoImpl(getIt(), getIt(), getIt()),
-  );
+  getIt.registerLazySingleton<FavRepo>(() => FavRepoImpl(getIt(), getIt()));
   getIt.registerFactory<FavCubit>(() => FavCubit(getIt()));
 }

@@ -3,15 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketi/core/di/get_it.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/styles.dart';
-import '../../../cart/presentation/view_model/cart/cart_cubit.dart';
 import '../../../cart/presentation/views/cart_view.dart';
 import '../../../cart/presentation/views/widgets/cart_bottom_sheet.dart';
-import '../../../fav/presentation/view_model/fav/fav_cubit.dart';
 import '../../../fav/presentation/views/fav_view.dart';
 import '../../../menu/presentation/views/menu_view.dart';
 import '../view_model/brands/brands_cubit.dart';
 import '../view_model/categories/categories_cubit.dart';
-import '../view_model/products/products_cubit.dart';
 import 'home_view.dart';
 import 'widgets/home_app_bar.dart';
 
@@ -29,23 +26,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<ProductsCubit>()..getProducts(),
-        ),
-        BlocProvider(
           create: (context) => getIt<CategoriesCubit>()..getCategories(),
         ),
         BlocProvider(create: (context) => getIt<BrandsCubit>()..getBrands()),
       ],
       child: const HomeView(),
     ),
-    BlocProvider(
-      create: (context) => getIt<CartCubit>()..getCart(),
-      child: const CartView(),
-    ),
-    BlocProvider(
-      create: (context) => getIt<FavCubit>()..getFav(),
-      child: const FavView(),
-    ),
+    const CartView(),
+    const FavView(),
     const MenuView(),
   ];
 

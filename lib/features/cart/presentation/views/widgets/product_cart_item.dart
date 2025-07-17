@@ -1,14 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/di/get_it.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/styles.dart';
-import '../../../../fav/presentation/view_model/fav/fav_cubit.dart';
-import '../../../data/models/cart_model.dart';
+import '../../../../home/data/models/product_model.dart';
 
 class ProductCartItem extends StatelessWidget {
   const ProductCartItem({super.key, required this.product});
-  final CartModel product;
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +53,6 @@ class ProductCartItem extends StatelessWidget {
                           color: AppColors.darkBlue900,
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 4),
-                    InkWell(
-                      onTap: () {
-                        getIt<FavCubit>().addFav(product.id);
-                      },
-                      child: const Icon(Icons.favorite_border, size: 20),
                     ),
                   ],
                 ),

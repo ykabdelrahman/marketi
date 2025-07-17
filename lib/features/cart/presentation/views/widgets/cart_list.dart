@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import '../../../data/models/cart_model.dart';
+import '../../../../home/data/models/product_model.dart';
 import '../../view_model/cart/cart_cubit.dart';
 import 'product_cart_item.dart';
 
@@ -30,7 +30,7 @@ class CartList extends StatelessWidget {
           itemBuilder:
               (context, index) => Skeletonizer(
                 enabled: true,
-                child: ProductCartItem(product: dummyCart()),
+                child: ProductCartItem(product: dummyProduct()),
               ),
         );
       },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/models/cart_model.dart';
+import '../../../../home/data/models/product_model.dart';
 import '../../../data/repos/cart_repo.dart';
 part 'cart_state.dart';
 
@@ -17,19 +17,31 @@ class CartCubit extends Cubit<CartState> {
     );
   }
 
-  Future<void> addCart(String productId) async {
-    final result = await _cartRepo.addCart(productId: productId);
+  Future<void> addCart(ProductModel product) async {
+    final result = await _cartRepo.addCart(product: product);
     result.fold(
-      (error) => emit(CartError(error.message!)),
-      (message) => emit(AddedToCart(message)),
+      (error) {
+        emit(CartError(error.message!));
+        getCart();
+      },
+      (message) {
+        emit(AddedToCart(message));
+        getCart();
+      },
     );
   }
 
   Future<void> removeCart(String productId) async {
     final result = await _cartRepo.removeCart(productId: productId);
     result.fold(
-      (error) => emit(CartError(error.message!)),
-      (message) => emit(RemovedFromCart(message)),
+      (error) {
+        emit(CartError(error.message!));
+        getCart();
+      },
+      (message) {
+        emit(RemovedFromCart(message));
+        getCart();
+      },
     );
   }
 }

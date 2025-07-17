@@ -8,6 +8,9 @@ import 'package:marketi/features/home/presentation/views/bottom_nav_bar.dart';
 import 'package:marketi/features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import '../../features/auth/presentation/view_model/signup_cubit/signup_cubit.dart';
+import '../../features/cart/presentation/view_model/cart/cart_cubit.dart';
+import '../../features/fav/presentation/view_model/fav/fav_cubit.dart';
+import '../../features/home/presentation/view_model/products/products_cubit.dart';
 import '../func/transition_page.dart';
 import 'routes.dart';
 
@@ -49,7 +52,20 @@ abstract class AppRouter {
             (context, state) => buildPageWithDefaultTransition(
               context: context,
               state: state,
-              child: const BottomNavBar(),
+              child: MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create: (context) => getIt<ProductsCubit>()..getProducts(),
+                  ),
+                  BlocProvider(
+                    create: (context) => getIt<FavCubit>()..getFav(),
+                  ),
+                  BlocProvider(
+                    create: (context) => getIt<CartCubit>()..getCart(),
+                  ),
+                ],
+                child: const BottomNavBar(),
+              ),
             ),
       ),
     ],

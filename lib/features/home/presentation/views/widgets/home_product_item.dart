@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:marketi/core/di/get_it.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/styles.dart';
 import '../../../../cart/presentation/view_model/cart/cart_cubit.dart';
@@ -52,20 +52,7 @@ class HomeProductItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Positioned(
-                    top: 4,
-                    right: 4,
-                    child: InkWell(
-                      onTap: () {
-                        getIt<FavCubit>().addFav(product.id);
-                      },
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 12,
-                        child: Icon(Icons.favorite_outline, size: 16),
-                      ),
-                    ),
-                  ),
+                  FavButton(product: product),
                 ],
               ),
             ),
@@ -112,7 +99,7 @@ class HomeProductItem extends StatelessWidget {
                   alignment: Alignment.center,
                   child: OutlinedButton(
                     onPressed: () {
-                      getIt<CartCubit>().addCart(product.id);
+                      context.read<CartCubit>().addCart(product);
                     },
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(color: AppColors.lightBlue100),
@@ -135,6 +122,38 @@ class HomeProductItem extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class FavButton extends StatelessWidget {
+  const FavButton({super.key, required this.product});
+  final ProductModel product;
+
+  @override
+  Widget build(BuildContext context) {
+    final isFav = context.watch<FavCubit>().isFavorite(product.id);
+    return Positioned(
+      top: 4,
+      right: 4,
+      child: InkWell(
+        onTap: () {
+          if (isFav) {
+            return;
+          } else {
+            context.read<FavCubit>().addFav(product);
+          }
+        },
+        child: CircleAvatar(
+          backgroundColor: Colors.white,
+          radius: 12,
+          child: Icon(
+            isFav ? Icons.favorite : Icons.favorite_border,
+            size: 16,
+            color: isFav ? AppColors.darkBlue100 : null,
+          ),
+        ),
       ),
     );
   }
