@@ -4,6 +4,7 @@ A full-featured eCommerce app with product browsing, search, cart, and order man
 
 ## Preview
 
+<img width="2252" height="1535" alt="Group 12" src="https://github.com/user-attachments/assets/0fe83d2c-eec0-4d43-a9b4-2f5ad77bc521" />
 
 
 ## 🚀 Getting Started
